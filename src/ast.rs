@@ -23,8 +23,6 @@ pub struct Print {
     location: Location,
 }
 
-//VALUES
-
 #[allow(dead_code)]
 #[derive(Deserialize)]
 pub struct Str {
@@ -46,7 +44,33 @@ pub struct Bool {
     location: Location,
 }
 
+#[allow(dead_code)]
+#[derive(Deserialize)]
+pub struct Binary {
+    pub lhs: Box<Term>,
+    pub op: BinaryOp,
+    pub rhs: Box<Term>,
+    location: Location,
+}
+
 //ENUNS
+
+#[derive(Deserialize)]
+pub enum BinaryOp {
+    Add, // Soma	            3 + 5 = 8, "a" + 2 = "a2", 2 + "a" = "2a", "a" + "b" = "ab"
+    Sub, // Subtração	        0 - 1 = -1
+    Mul, // Multiplicação	    2 * 2 = 4
+    Div, // Divisão	            3 / 2 = 1
+    Rem, // Resto da divisão	4 % 2 = 0
+         // Eq,  // Igualdade	        "a" == "a", 2 == 1 + 1, true == true
+         // Neq, // Diferente	        "a" != "b", 3 != 1 + 1, true != false
+         // Lt,  // Menor	            1 < 2
+         // Gt,  // Maior	            2 > 3
+         // Lte, // Menor ou igual	    1 <= 2
+         // Gte, // Maior ou igual	    1 >= 2
+         // And, // Conjunção	        true && false
+         // Or,  // Disjunção           true || false
+}
 
 #[derive(Deserialize)]
 pub enum Value {
@@ -63,4 +87,5 @@ pub enum Term {
     Str(Str),
     Bool(Bool),
     Print(Print),
+    Binary(Binary),
 }

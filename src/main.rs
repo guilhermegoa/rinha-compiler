@@ -1,6 +1,6 @@
 mod ast;
 
-use ast::{File, Term, Value};
+use ast::{BinaryOp, File, Term, Value};
 use std::{env, fs};
 
 fn eval(term: Term) -> Value {
@@ -18,6 +18,51 @@ fn eval(term: Term) -> Value {
             };
             Value::Nil
         }
+        Term::Binary(binary) => match binary.op {
+            BinaryOp::Add => {
+                let left = eval(*binary.lhs);
+                let right = eval(*binary.rhs);
+                match (left, right) {
+                    (Value::Int(left), Value::Int(right)) => Value::Int(left + right),
+                    (Value::Str(left), Value::Str(right)) => Value::Str(left + &right),
+                    (Value::Str(left), Value::Int(right)) => Value::Str(left + &right.to_string()),
+                    (Value::Int(left), Value::Str(right)) => Value::Str(left.to_string() + &right),
+                    _ => panic!("Error"),
+                }
+            }
+            BinaryOp::Sub => {
+                let left = eval(*binary.lhs);
+                let right = eval(*binary.rhs);
+                match (left, right) {
+                    (Value::Int(left), Value::Int(right)) => Value::Int(left - right),
+                    _ => panic!("Error"),
+                }
+            }
+            BinaryOp::Mul => {
+                let left = eval(*binary.lhs);
+                let right = eval(*binary.rhs);
+                match (left, right) {
+                    (Value::Int(left), Value::Int(right)) => Value::Int(left * right),
+                    _ => panic!("Error"),
+                }
+            }
+            BinaryOp::Div => {
+                let left = eval(*binary.lhs);
+                let right = eval(*binary.rhs);
+                match (left, right) {
+                    (Value::Int(left), Value::Int(right)) => Value::Int(left / right),
+                    _ => panic!("Error"),
+                }
+            }
+            BinaryOp::Rem => {
+                let left = eval(*binary.lhs);
+                let right = eval(*binary.rhs);
+                match (left, right) {
+                    (Value::Int(left), Value::Int(right)) => Value::Int(left % right),
+                    _ => panic!("Error"),
+                }
+            }
+        },
     }
 }
 
