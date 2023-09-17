@@ -62,14 +62,14 @@ pub enum BinaryOp {
     Mul, // Multiplicação	    2 * 2 = 4
     Div, // Divisão	            3 / 2 = 1
     Rem, // Resto da divisão	4 % 2 = 0
-         // Eq,  // Igualdade	        "a" == "a", 2 == 1 + 1, true == true
-         // Neq, // Diferente	        "a" != "b", 3 != 1 + 1, true != false
-         // Lt,  // Menor	            1 < 2
-         // Gt,  // Maior	            2 > 3
-         // Lte, // Menor ou igual	    1 <= 2
-         // Gte, // Maior ou igual	    1 >= 2
-         // And, // Conjunção	        true && false
-         // Or,  // Disjunção           true || false
+    Eq,  // Igualdade	        "a" == "a", 2 == 1 + 1, true == true
+    Neq, // Diferente	        "a" != "b", 3 != 1 + 1, true != false
+    Lt,  // Menor	            1 < 2
+    Gt,  // Maior	            2 > 3
+    Lte, // Menor ou igual	    1 <= 2
+    Gte, // Maior ou igual	    1 >= 2
+    And, // Conjunção	        true && false
+    Or,  // Disjunção           true || false
 }
 
 #[derive(Deserialize)]
