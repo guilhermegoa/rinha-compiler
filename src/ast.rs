@@ -53,6 +53,38 @@ pub struct Binary {
     location: Location,
 }
 
+#[allow(dead_code)]
+#[derive(Deserialize)]
+pub struct If {
+    pub condition: Box<Term>,
+    pub then: Box<Term>,
+    pub otherwise: Box<Term>,
+    location: Location,
+}
+
+#[allow(dead_code)]
+#[derive(Deserialize)]
+pub struct Var {
+    pub text: String,
+    location: Location,
+}
+
+#[allow(dead_code)]
+#[derive(Deserialize)]
+pub struct Parameter {
+    pub text: String,
+    location: Location,
+}
+
+#[allow(dead_code)]
+#[derive(Deserialize)]
+pub struct Let {
+    pub name: Parameter,
+    pub value: Box<Term>,
+    pub next: Box<Term>,
+    location: Location,
+}
+
 //ENUNS
 
 #[derive(Deserialize)]
@@ -72,7 +104,7 @@ pub enum BinaryOp {
     Or,  // Disjunção           true || false
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Clone)]
 pub enum Value {
     Int(i32),
     Str(String),
@@ -88,4 +120,7 @@ pub enum Term {
     Bool(Bool),
     Print(Print),
     Binary(Binary),
+    If(If),
+    Let(Let),
+    Var(Var),
 }
