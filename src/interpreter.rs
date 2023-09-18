@@ -102,5 +102,15 @@ pub fn eval(term: Term, context: &mut Context) -> Value {
             Some(value) => value.clone(),
             None => panic!("Error"),
         },
+        //lambda -> anunymous function
+        Term::Function(function) => {
+            let parameters = function.parameters;
+            let body = function.body;
+            Value::Closure(parameters, body.body)
+        }
+        // Nao sei como fazer
+        Term::Call(call) => {
+            todo!()
+        }
     }
 }
