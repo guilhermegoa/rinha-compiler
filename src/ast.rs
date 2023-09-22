@@ -148,5 +148,5 @@ pub enum Term {
     Let(Let),
     Var(Var),
     Function(Function),
-    Call(Call),
+    // Call(Call),
 }

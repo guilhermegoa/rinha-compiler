@@ -109,8 +109,8 @@ pub fn eval(term: Term, context: &mut Context) -> Value {
             Value::Closure(parameters, body.body)
         }
         // Nao sei como fazer
-        Term::Call(call) => {
-            todo!()
-        }
+        // Term::Call(call) => {
+        //     todo!()
+        // }
     }
 }
