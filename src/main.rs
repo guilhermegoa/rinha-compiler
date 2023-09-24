@@ -2,7 +2,6 @@ mod ast;
 mod interpreter;
 
 use std::{collections::HashMap, env, fs};
-// use std::{collections::HashMap, io::stdin, io::Read};
 
 use ast::File;
 use interpreter::eval;
