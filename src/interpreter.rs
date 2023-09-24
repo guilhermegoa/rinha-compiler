@@ -105,12 +105,20 @@ pub fn eval(term: Term, context: &mut Context) -> Value {
         //lambda -> anunymous function
         Term::Function(function) => {
             let parameters = function.parameters;
-            let body = function.body;
-            Value::Closure(parameters, body.body)
+            let value = function.value;
+            Value::Closure(parameters, *value)
         }
-        // Nao sei como fazer
-        // Term::Call(call) => {
-        //     todo!()
-        // }
+        Term::Call(call) => match eval(*call.callee, context) {
+            Value::Closure(parameters, body) => {
+                let mut new_scope = context.clone();
+                for i in 0..parameters.len() {
+                    let param = &parameters[i];
+                    let arg = &call.arguments[i];
+                    new_scope.insert(param.text.to_owned(), eval(arg.clone(), context));
+                }
+                eval(body, &mut new_scope)
+            }
+            _ => panic!("Error"),
+        },
     }
 }

@@ -87,16 +87,9 @@ pub struct Let {
 
 #[allow(dead_code)]
 #[derive(Deserialize, Clone)]
-pub struct Closure {
-    pub parameters: Vec<Parameter>,
-    pub body: Box<Term>,
-}
-
-#[allow(dead_code)]
-#[derive(Deserialize, Clone)]
 pub struct Function {
     pub parameters: Vec<Parameter>,
-    pub body: Box<Closure>,
+    pub value: Box<Term>,
     location: Location,
 }
 
@@ -132,7 +125,7 @@ pub enum Value {
     Int(i32),
     Str(String),
     Bool(bool),
-    Closure(Vec<Parameter>, Box<Term>),
+    Closure(Vec<Parameter>, Term),
     Nil,
 }
 
@@ -148,5 +141,5 @@ pub enum Term {
     Let(Let),
     Var(Var),
     Function(Function),
-    // Call(Call),
+    Call(Call),
 }
