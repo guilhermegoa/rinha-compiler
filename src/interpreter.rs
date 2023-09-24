@@ -19,6 +19,15 @@ pub fn eval(term: Term, context: &mut Context) -> Value {
             };
             Value::Nil
         }
+        Term::Tuple(tuple) => Value::Tuple((*tuple.first, *tuple.second)),
+        Term::First(t) => match eval(*t.value, context) {
+            Value::Tuple((term, _)) => eval(term, context),
+            _ => panic!("Error"),
+        },
+        Term::Second(t) => match eval(*t.value, context) {
+            Value::Tuple((_, term)) => eval(term, context),
+            _ => panic!("Error"),
+        },
         Term::Binary(binary) => {
             let left = eval(*binary.lhs, context);
             let right = eval(*binary.rhs, context);

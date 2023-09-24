@@ -1,0 +1,2 @@
+let tuple = ("teste", 42);
+print(first(tuple) + " " + second(tuple))

@@ -101,6 +101,28 @@ pub struct Call {
     location: Location,
 }
 
+#[allow(dead_code)]
+#[derive(Deserialize, Clone)]
+pub struct Tuple {
+    pub first: Box<Term>,
+    pub second: Box<Term>,
+    location: Location,
+}
+
+#[allow(dead_code)]
+#[derive(Deserialize, Clone)]
+pub struct First {
+    pub value: Box<Term>,
+    location: Location,
+}
+
+#[allow(dead_code)]
+#[derive(Deserialize, Clone)]
+pub struct Second {
+    pub value: Box<Term>,
+    location: Location,
+}
+
 //ENUNS
 
 #[derive(Deserialize, Clone)]
@@ -126,6 +148,7 @@ pub enum Value {
     Str(String),
     Bool(bool),
     Closure(Vec<Parameter>, Term),
+    Tuple((Term, Term)),
     Nil,
 }
 
@@ -142,4 +165,7 @@ pub enum Term {
     Var(Var),
     Function(Function),
     Call(Call),
+    Tuple(Tuple),
+    First(First),
+    Second(Second),
 }
