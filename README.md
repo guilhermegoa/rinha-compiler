@@ -19,6 +19,7 @@ git clone https://github.com/seu-usuario/seu-projeto.git
 ```
 
 3. Navegue até a pasta do projeto:
+
 ```bash
 cd seu-projeto
 ```
@@ -28,7 +29,36 @@ cd seu-projeto
 ```bash
 cargo run -- examples/<xxx>.json
 ```
-#### Exemplos disponíveis
+
+### Executando no Docker
+
+Se preferir, você também pode executar este projeto em um contêiner Docker. Certifique-se de ter o Docker instalado em seu sistema antes de seguir estas etapas:
+
+1. Clone este repositório para o seu sistema, se ainda não o fez:
+
+```bash
+git clone https://github.com/seu-usuario/seu-projeto.git
+```
+
+2. Navegue até a pasta do projeto:
+
+```bash
+cd seu-projeto
+```
+3. Construa o projeto:
+
+```bash
+docker build -t rinha .
+```
+
+4. Rodeo projeto:
+
+```bash
+docker run -v $(pwd)/examples:/app/examples nome-da-imagem cargo run -- examples/<xxx>.json
+```
+
+
+### Exemplos disponíveis
 
 - print
 - sum
