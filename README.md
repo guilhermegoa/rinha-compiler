@@ -45,8 +45,8 @@ git clone https://github.com/seu-usuario/seu-projeto.git
 ```bash
 cd seu-projeto
 ```
-3. Construa o projeto:
-
+3. Construa o projeto. Obs.: necessário comentar ou descomentar op exemplo no dockerfile comando que sera rodado:
+ 
 ```bash
 docker build -t rinha .
 ```
@@ -54,7 +54,7 @@ docker build -t rinha .
 4. Rodeo projeto:
 
 ```bash
-docker run -v $(pwd)/examples:/app/examples nome-da-imagem cargo run -- examples/<xxx>.json
+docker run rinha
 ```
 
 
